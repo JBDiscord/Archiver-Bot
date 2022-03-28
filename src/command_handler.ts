@@ -15,7 +15,7 @@ export default (client: Client) => {
     }
 
     const commandsBody = []
-    const commandFiles = getfiles("C:\\Users\\wayne\\Desktop\\Jakob2\\JB Programs\\Archiver Bot\\src\\commands")
+    const commandFiles = getfiles(config.command_dir)
 
     for(const file of commandFiles)
     {
