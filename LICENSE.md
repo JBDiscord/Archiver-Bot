@@ -2,10 +2,12 @@
 
 Copyright (c) 2022. JB Stepan. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy if the software, including the following limitations on the software,
+Permission is hereby granted, free of charge, to any person obtaining a copy if the software, 
+including the following limitations on the software,
     (1). You are not allowed to use the software in any commercial applications.
     (2). You must disclose the source, license and copyright notice of the original software.
-Any other things not mentioned in the above limitations are considered fine and are allowed under this license. The license can and will change with or without notice at any time.
+Any other things not mentioned in the above limitations are considered fine and are allowed under this license. 
+The license can and will change with or without notice at any time.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
 INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
