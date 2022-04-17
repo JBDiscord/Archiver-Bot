@@ -1,8 +1,10 @@
-import { Client, Guild, Intents } from "discord.js"
+import { Client, Guild, Intents, Message } from "discord.js"
 import { Embed, bold } from "@discordjs/builders"
+import { serversCol } from "./firebase"
 
 import config from "../config.json"
 import handler from './command_handler'
+import { doc, getDoc, setDoc } from "firebase/firestore"
 
 const client = new Client({
     intents: [
@@ -16,6 +18,24 @@ client.once("ready", () => {
     handler(client)
 
     console.log("Ready")
+})
+
+client.on("messageCreate", async (message: Message)=> {
+    if (message.member.id === "912903685892345906"){ return; }
+
+    const serverSettings = (await getDoc(doc(serversCol, message.guild.id))).data()
+    if (message.guild.id in serverSettings.blacklist) { return; }
+
+    const attachments = Array(message.attachments)
+
+    attachments.forEach((i) => {
+        console.log(i[0].url)
+    });
+
+    await setDoc(doc(serversCol, message.guild.id, "archive", message.id), {
+        content: message.content,
+        user: message.member.id
+    })    
 })
 
 client.on("guildCreate", (guild: Guild) => {
