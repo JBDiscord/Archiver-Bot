@@ -33,10 +33,8 @@ export default {
                     const serverSettings = doc(serversCol, interation.guild.id)
 
                     var updatedoc = await updateDoc(serverSettings, {
-                        blacklist: arrayUnion(Number(interation.options.getChannel("channel")))
+                        blackList: arrayUnion(Number(interation.options.getChannel("channel")))
                     })
-
-                    console.log(updatedoc)
 
                     interation.reply(`Added ${interation.options.getChannel("channel")} to blacklist`)
                     return
@@ -50,7 +48,7 @@ export default {
                     const serverSettings = doc(serversCol, interation.guild.id)
 
                     var updatedoc = await updateDoc(serverSettings, {
-                        blacklist: arrayRemove(Number(interation.options.getChannel("channel")))
+                        blackList: arrayRemove(Number(interation.options.getChannel("channel")))
                     })
 
                     interation.reply(`Removed ${interation.options.getChannel("channel")} from the blacklist`)

@@ -22,6 +22,8 @@ export default (client: Client) => {
         const command = require(`${file}`)
         commandsBody.push(command.data.toJSON())
 
+        console.log(`Loaded ${command.name}`)
+
         commands[command.name.toLowerCase()] = command.default
     }
 
@@ -58,16 +60,26 @@ export default (client: Client) => {
     }
 
     client.on("interactionCreate", async (interaction: Interaction) =>{
-        if(!interaction.isCommand()) {
-            return
+        if(interaction.isCommand()) {
+            const { commandName } = interaction
+            const commandName1: String = commandName
+
+            try {
+                commands[commandName1.toLowerCase()].callback(interaction)
+            } catch (err) {
+                if (err) console.error(err)
+            }
         }
 
-        const { commandName } = interaction
-        
-        try {
-            commands[commandName].callback(interaction)
-        } catch(err) {
-            if(err) console.error(err)
+        if(interaction.isMessageContextMenu()) {
+            const { commandName } = interaction
+            const commandName1: String = commandName
+
+            try {
+                commands[commandName1.toLowerCase()].callback(interaction)
+            } catch (err) {
+                if (err) console.error(err)
+            }
         }
     })
 }

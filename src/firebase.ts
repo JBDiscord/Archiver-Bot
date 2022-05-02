@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
-import { collection, CollectionReference, DocumentData, getFirestore } from 'firebase/firestore'
-import { IServer } from './types/Server'
+import { collection, CollectionReference, DocumentData, DocumentReference, getFirestore } from 'firebase/firestore'
 import config from '../config.json'
+import { IMessage, IServer } from './types'
 
 export const firebaseApp = initializeApp({
     apiKey: config['firebase_api-key'],
@@ -11,8 +11,9 @@ export const firebaseApp = initializeApp({
 
 export const firestore = getFirestore()
 
-const createCollection =(collectionName: string) => {
-    return collection(firestore, collectionName)
+const createCollection = <T = DocumentData>(collectionName: string) => {
+    return collection(firestore, collectionName) as CollectionReference<T>
 }
 
-export const serversCol = createCollection("servers")
+export const serversCol = createCollection<IServer>("servers")
+export const messagesCol = createCollection<IMessage>("messages")

@@ -45,11 +45,12 @@ export default {
                 }
 
                 await setDoc(doc(serversCol, interation.guild.id), {
-                    blacklist: [],
-                    botmoderators: [],
+                    blackList: [],
+                    botModerators: [],
+                    archiveThreads: null,
                     country: interation.options.getString("country"),
-                    loggingenabled: interation.options.getBoolean("enable_logging"),
-                    loggingchannel: loggingchannel
+                    loggingEnabled: interation.options.getBoolean("enable_logging"),
+                    loggingChannel: loggingchannel
                 })
 
                 setTimeout(() => {
