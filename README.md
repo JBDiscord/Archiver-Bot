@@ -3,7 +3,7 @@
 </div>
 
 # Discord Archiver Bot
-A bot the will archive the message sent in your Discord server 
+A bot the will archive the messages sent in your Discord server 
 <br>
 
 [Design Doc](https://github.com/tonymoooon543/Archiver-Bot/blob/master/DESIGN.md)
