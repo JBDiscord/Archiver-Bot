@@ -1,20 +1,16 @@
-import { SlashCommandBuilder } from "@discordjs/builders"
-import { Interaction } from "discord.js"
+import { SlashCommandBuilder } from "@discordjs/builders";
+import { Client, Interaction } from "discord.js";
+import { ICommand } from "../types";
 
-export const data = new SlashCommandBuilder()
-    .setName("ping")
-    .setDescription("For the table tennis")
-    .addStringOption(option =>
-        option.setName('name')
-            .setDescription('Your name, what is it!?')
-            .setRequired(true))
-
-export const name = "ping"
-
-export default {
-    async callback(interation: Interaction) {
-        if(interation.isCommand()) {
-            interation.reply(`Pong! ${interation.options.getString("example")}`)
+export const command: ICommand = {
+    name: "Ping",
+    data: new SlashCommandBuilder()
+              .setName("ping")
+              .setDescription("Test Command!"),
+    perms: ['MANGAGE_ROLES']
+    run: function (interaction: Interaction, client: Client) {
+        if(interaction.isCommand()) {
+            interaction.reply("Pong")
         }
     }
 }

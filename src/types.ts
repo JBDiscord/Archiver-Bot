@@ -1,3 +1,6 @@
+import { ContextMenuCommandBuilder, SlashCommandBuilder, SlashCommandSubcommandsOnlyBuilder } from "@discordjs/builders"
+import { Client, Interaction, PermissionResolvable } from "discord.js"
+
 export interface IServer {
     loggingEnabled: boolean
     archiveThreads: boolean,
@@ -12,4 +15,11 @@ export interface IMessage {
     content: String,
     user: String,
     inThread: boolean
+}
+
+export interface ICommand {
+    name: String,
+    data: SlashCommandBuilder | ContextMenuCommandBuilder | any,
+    perms?: PermissionResolvable,
+    run: (interaction: Interaction, client: Client) => unknown
 }

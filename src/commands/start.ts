@@ -1,63 +1,123 @@
 import { SlashCommandBuilder, userMention } from "@discordjs/builders"
-import { GuildMember, Interaction, Permissions } from "discord.js"
+import { Client, GuildMember, Interaction, Permissions } from "discord.js"
 import { firestore, serversCol } from "../firebase"
 import { doc, updateDoc, arrayUnion, getDoc, setDoc } from 'firebase/firestore'
+import { ICommand } from "../types"
 
-export const data = new SlashCommandBuilder()
-    .setName("start")
-    .setDescription("To initialize Archiver Bot")
-    .addStringOption(option =>
-        option.setName('country')
-            .setDescription('Please select your country')
-            .setRequired(true)
-            .addChoice('United States', 'usa')
-            .addChoice('United Kingdom', 'uk')
-            .addChoice('Europen Union', 'eu')
-            .addChoice('Canada', 'ca')
-            .addChoice('Mexico', 'mex')
-            .addChoice('Russia', 'ru'))
-    .addBooleanOption(option => 
-        option.setName('enable_logging')
-        .setDescription('If you would like the bot to notify you about things')
-        .setRequired(true))
-    .addChannelOption(option => 
-        option.setName("logging_channel")
-        .setDescription("The logging channel, make sure its text")
-        .addChannelType(0)
-        .setRequired(false))
+// export const data = new SlashCommandBuilder()
+//     .setName("start")
+//     .setDescription("To initialize Archiver Bot")
+//     .addStringOption(option =>
+//         option.setName('country')
+//             .setDescription('Please select your country')
+//             .setRequired(true)
+//             .addChoice('United States', 'usa')
+//             .addChoice('United Kingdom', 'uk')
+//             .addChoice('Europen Union', 'eu')
+//             .addChoice('Canada', 'ca')
+//             .addChoice('Mexico', 'mex')
+//             .addChoice('Russia', 'ru'))
+//     .addBooleanOption(option => 
+//         option.setName('enable_logging')
+//         .setDescription('If you would like the bot to notify you about things')
+//         .setRequired(true))
+//     .addChannelOption(option => 
+//         option.setName("logging_channel")
+//         .setDescription("The logging channel, make sure its text")
+//         .addChannelType(0)
+//         .setRequired(false))
 
-export const name = "start"
+// export const name = "start"
 
-export default {
-    async callback(interation: Interaction) {
-        if(interation.isCommand()) {
-            const member = interation.member as GuildMember
+// export default {
+//     async callback(interation: Interaction) {
+//         if(interation.isCommand()) {
+//             const member = interation.member as GuildMember
             
+//             if (member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
+//                 interation.reply(`Initializing Bot, please wait...`)
+
+//                 var loggingchannel
+
+//                 if (interation.options.getBoolean("enable_logging") === true) {
+//                     loggingchannel = Number(interation.options.getChannel("logging_channel"))
+//                 } else {
+//                     loggingchannel = null
+//                 }
+
+//                 await setDoc(doc(serversCol, interation.guild.id), {
+//                     blackList: [],
+//                     botModerators: [],
+//                     archiveThreads: null,
+//                     country: interation.options.getString("country"),
+//                     loggingEnabled: interation.options.getBoolean("enable_logging"),
+//                     loggingChannel: loggingchannel
+//                 })
+
+//                 setTimeout(() => {
+//                     interation.editReply(`${userMention(interation.user.id)}, the bot has been initialized! Use /help to see commands!`)
+//                 }, 2000)
+//             } else {
+//                 interation.reply(`${userMention(interation.user.id)}, you dont have permission to use that command.`)
+//             }
+//         }
+//     }
+// }
+
+
+export const command: ICommand = {
+    name: "Start",
+    data: new SlashCommandBuilder()
+        .setName("start")
+        .setDescription("To initialize Archiver Bot")
+        .addStringOption(option =>
+            option.setName('country')
+                .setDescription('Please select your country')
+                .setRequired(true)
+                .addChoice('United States', 'usa')
+                .addChoice('United Kingdom', 'uk')
+                .addChoice('Europen Union', 'eu')
+                .addChoice('Canada', 'ca')
+                .addChoice('Mexico', 'mex')
+                .addChoice('Russia', 'ru'))
+        .addBooleanOption(option =>
+            option.setName('enable_logging')
+                .setDescription('If you would like the bot to notify you about things')
+                .setRequired(true))
+        .addChannelOption(option =>
+            option.setName("logging_channel")
+                .setDescription("The logging channel, make sure its text")
+                .addChannelType(0)
+                .setRequired(false)),
+    run: async function (interaction: Interaction, client: Client) {
+        if (interaction.isCommand()) {
+            const member = interaction.member as GuildMember
+
             if (member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
-                interation.reply(`Initializing Bot, please wait...`)
+                interaction.reply(`Initializing Bot, please wait...`)
 
                 var loggingchannel
 
-                if (interation.options.getBoolean("enable_logging") === true) {
-                    loggingchannel = Number(interation.options.getChannel("logging_channel"))
+                if (interaction.options.getBoolean("enable_logging") === true) {
+                    loggingchannel = Number(interaction.options.getChannel("logging_channel"))
                 } else {
                     loggingchannel = null
                 }
 
-                await setDoc(doc(serversCol, interation.guild.id), {
+                await setDoc(doc(serversCol, interaction.guild.id), {
                     blackList: [],
                     botModerators: [],
                     archiveThreads: null,
-                    country: interation.options.getString("country"),
-                    loggingEnabled: interation.options.getBoolean("enable_logging"),
+                    country: interaction.options.getString("country"),
+                    loggingEnabled: interaction.options.getBoolean("enable_logging"),
                     loggingChannel: loggingchannel
                 })
 
                 setTimeout(() => {
-                    interation.editReply(`${userMention(interation.user.id)}, the bot has been initialized! Use /help to see commands!`)
+                    interaction.editReply(`${userMention(interaction.user.id)}, the bot has been initialized! Use /help to see commands!`)
                 }, 2000)
             } else {
-                interation.reply(`${userMention(interation.user.id)}, you dont have permission to use that command.`)
+                interaction.reply(`${userMention(interaction.user.id)}, you dont have permission to use that command.`)
             }
         }
     }

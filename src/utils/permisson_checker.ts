@@ -5,7 +5,3 @@ import { doc, updateDoc, arrayUnion, getDoc, arrayRemove } from 'firebase/firest
 export const checkIfBotMod = (user: User, guildid: String) => {
 
 }
-
-export const checkPerms = (user: User, permissions: PermissionFlags[]) => {
-
-}
