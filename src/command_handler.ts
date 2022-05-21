@@ -87,6 +87,8 @@ export default (client: Client) => {
                         ephemeral: true,
                     });
                 }
+
+                console.log(err)
             }
         }
     })
