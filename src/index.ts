@@ -6,7 +6,9 @@ import config from "../config.json"
 import handler from './command_handler'
 import { deleteDoc, doc, getDoc, setDoc } from "firebase/firestore"
 
-const client = new Client({
+import { app } from './api/index'
+
+export const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
@@ -74,4 +76,7 @@ client.on("guildCreate", (guild: Guild) => {
     })
 })
 
+app.listen(config["api-port"], () => {
+    console.debug("[API] Listening on port 3000")
+})
 client.login(config.token)
