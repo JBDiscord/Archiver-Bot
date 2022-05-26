@@ -17,6 +17,9 @@ seeing as how if you delete something off a Discord there really is no way
 to get it back, unless you rely on screenshots. And since the archives audit 
 log is open to public*, anyone can see the messages that have been sent in a server and see if people are lying.
 
+## Potential Problems 
+I think its pretty clear that a problem I will come across is, storing things that go against Discords TOS. I think I have a sloution for that, Firebase functions and the Google Cloud Vision API. I dont know how I going to do that right now. Ill cross the bridge when I get a lawsuit throw at me.
+
 ## Website
 The website is basically the heart of Archiver Bot, this is where people can see 
 the servers archive, if they are a bot moderator, and change the servers settings. 
