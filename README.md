@@ -8,4 +8,4 @@ A bot the will archive the messages sent in your Discord server
 
 [Design Doc](https://github.com/tonymoooon543/Archiver-Bot/blob/master/DESIGN.md)
 <br>
-Discord - *coming soon*
+Discord - *coming sooner or later*
