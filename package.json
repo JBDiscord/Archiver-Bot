@@ -9,7 +9,7 @@
   },
   "keywords": [],
   "author": "JB Stepan",
-  "license": "GPL v3.0",
+  "license": "JB Stepan Public License 1.0",
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
     "@discordjs/rest": "^0.3.0",
