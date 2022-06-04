@@ -1,4 +1,4 @@
-## JB Stepan Public License 1.0
+JB Stepan Public License 1.0
 
 Copyright (c) 2022. JB Stepan. All rights reserved.
 
