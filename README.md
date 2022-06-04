@@ -4,9 +4,13 @@
 
 <br>
 
+[![license](https://img.shields.io/badge/license-JBPL--NO%201.0-brightgreen)](https://github.com/JBStepan/Archiver-Bot/blob/master/LICENSE.txt)
+
 [![forthebadge](https://forthebadge.com/images/badges/mom-made-pizza-rolls.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/compatibility-betamax.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
+[![forthebadge](https://img.shields.io/github/languages/code-size/JBStepan/Archiver-Bot?style=for-the-badge)](https://forthebadge.com)
+
 
 # Discord Archiver Bot
 A bot the will archive the messages sent in your Discord server 
