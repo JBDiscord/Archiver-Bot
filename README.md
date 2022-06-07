@@ -16,6 +16,25 @@
 A bot the will archive the messages sent in your Discord server 
 <br>
 
+## Running yourself
+1. Create a Firebase project at [Firebase.com](https://www.firebase.com)
+2. Add a web app to the project
+3. Create a file name `config.json` in the base directory.
+3. Put this structure in there and replace with firebase info
+```json
+{
+    "token": "DISCORD_TOKEN",
+    "client_id": "DISCORD_CLIENT_ID",
+    "debug_guild": "DEBUG_GUILD_FOR_TESTING",
+    "command_dir": "COMMAAND_DIRECTORY",
+    "debug": false,
+    "firebase_api-key": "FIREBASE_API_KEY",
+    "firebase_auth-domain": "FIREBASE_AUTH_DOMAIN",
+    "firbase_project-id": "FIREBASE_PROJECT_ID",
+}
+```
+4. Run `npm run prod`
+
 [Design Doc](https://github.com/tonymoooon543/Archiver-Bot/blob/master/DESIGN.md)
 <br>
 Discord - *coming sooner or later*
