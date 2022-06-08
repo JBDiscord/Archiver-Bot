@@ -44,7 +44,7 @@ Requirements:
 If you run into a bug please open an bug issue.
 
 If you want to add a feature to Archiver, please open a discussion in `Ideas` in Discussions before opening a pull request.
-This is so we can talk about what the feature is and what it intails before open a pull request.
+This is so we can talk about what the feature is and what it intails before you open a pull request.
 
 ## Links
 [Design Doc](https://github.com/tonymoooon543/Archiver-Bot/blob/master/DESIGN.md)
