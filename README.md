@@ -40,6 +40,11 @@ Requirements:
 7. In the console, run `npm run prod`
 ### !! If this does not work please open an issue. !!
 
+## Bugs and proposed features
+If you run into a bug please open an bug issue.
+
+If you want to add a feature to Archiver please open a discussion in Discussions before opening a pull request.
+
 [Design Doc](https://github.com/tonymoooon543/Archiver-Bot/blob/master/DESIGN.md)
 <br>
 Discord - *coming sooner or later*
