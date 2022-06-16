@@ -78,7 +78,7 @@ client.on("guildCreate", (guild: Guild) => {
     })
 })
 
-app.listen(config["api-port"], () => {
+app.listen(5000, () => {
     console.debug("[API] Listening on port 3000")
 })
 client.login(config.token)

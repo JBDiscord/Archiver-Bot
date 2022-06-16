@@ -1,17 +1,19 @@
 import express, { Router } from 'express'
 
-import { getGuildOwnerID, getGuildFirestoreDoc, getGuildMessages, getGuildInfo } from "../bot/utils/apiUtils"
+import { getGuildOwnerID, getGuildFirestoreDoc, getGuildMessages, getGuildInfo, getUserInfo } from "../bot/utils/apiUtils"
 import config from '../../config.json'
 
 export const app: express.Application = express()
 const router = express.Router()
+
+app.use(router)
 
 router.get('/home', function (req, res) {
     res.shouldKeepAlive = false
     res.sendFile(config['api-home-file'])
 })
 
-router.get('/:guild', async (req, res) => {
+router.get('/:guild/get', async (req, res) => {
     const guildID = req.params.guild
 
     const resJSON = await getGuildFirestoreDoc(guildID)
@@ -23,6 +25,28 @@ router.get('/:guild', async (req, res) => {
             "reponse": {
                 "guild": guildID,
                 "reason": "Guild DB not intialized"
+            }
+        })
+    } else {
+        res.json({
+            "code": 200,
+            "reponse": resJSON
+        })
+    }
+})
+
+router.get('/:user', async (req, res) => {
+    const userid = req.params.user
+
+    const resJSON = await getUserInfo(userid)
+
+    res.shouldKeepAlive = false
+    if (resJSON == "NOUSER") {
+        res.status(404).json({
+            "code": 404,
+            "reponse": {
+                "guild": userid,
+                "reason": "User not in bot DB"
             }
         })
     } else {
@@ -64,6 +88,8 @@ router.get('/:guild/messages', async (req, res) => {
     const guildInfo = await getGuildInfo(guildID)
     const resJSON = await getGuildMessages(guildID)
 
+    console.log("Messages get")
+
     res.shouldKeepAlive = false 
     if(guildInfo === "NOGUILD") {
         res.status(404).json({
@@ -84,5 +110,3 @@ router.get('/:guild/messages', async (req, res) => {
     }
 
 })
-
-app.use(router)

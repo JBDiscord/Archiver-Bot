@@ -44,7 +44,8 @@ export const getGuildMessages =async (guildid: string) => {
             "content": message.content,
             "attachments": message.attachments,
             "sendInThread": message.inThread,
-            "user": message.user
+            "user": message.user,
+            "channel": message.channel
         })
     })
 
@@ -62,5 +63,17 @@ export const getGuildInfo =async (guildid: string) => {
         "name": guild.name,
         "owner": guild.ownerId,
         "icon": guild.iconURL()
+    }
+}
+
+export const getUserInfo = async (userid: string) => {
+    const guild = client.users.cache.get(userid)
+
+    if (guild == undefined) {
+        return "NOUSER"
+    }
+
+    return {
+        "name": guild.username
     }
 }
