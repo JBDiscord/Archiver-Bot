@@ -4,7 +4,7 @@ import { REST } from "@discordjs/rest"
 import { Routes } from "discord-api-types/v9"
 
 import getfiles from './getfiles'
-import config from "../config.json"
+import config from "../../config.json"
 import { ICommand } from "./types"
 import { noPermsEmbed, commandErrorEmbed } from "./utils/embeds"
 

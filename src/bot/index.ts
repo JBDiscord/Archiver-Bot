@@ -2,11 +2,11 @@ import { Channel, Client, Guild, Intents, Message, TextChannel } from "discord.j
 import { Embed, bold } from "@discordjs/builders"
 import { messagesCol, serversCol } from "./firebase"
 
-import config from "../config.json"
+import config from "../../config.json"
 import handler from './command_handler'
 import { deleteDoc, doc, getDoc, setDoc } from "firebase/firestore"
 
-import { app } from './api/index'
+import { app } from '../api/index'
 
 export const client = new Client({
     intents: [
@@ -23,7 +23,7 @@ client.once("ready", () => {
 })
 
 client.on("messageCreate", async (message: Message)=> {
-    if (message.member.id === "912903685892345906"){ return; }
+    if (message.member.id === "979374292259176448"){ return; }
 
     const serverSettings = (await getDoc(doc(serversCol, message.guild.id))).data()
 
@@ -54,6 +54,7 @@ client.on("messageCreate", async (message: Message)=> {
 client.on("guildDelete", (guild: Guild) => {
     try {
         deleteDoc(doc(serversCol, guild.id))
+        deleteDoc(doc(messagesCol, guild.id))
     } catch(err) {
         if(err) {
             console.log(`Error in deleting guild from DB. Guild ID: ${guild.id}`)

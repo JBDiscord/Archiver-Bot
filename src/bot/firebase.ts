@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { collection, CollectionReference, DocumentData, DocumentReference, getFirestore } from 'firebase/firestore'
-import config from '../config.json'
+import config from "../../config.json"
 import { IMessage, IServer } from './types'
 
 export const firebaseApp = initializeApp({
