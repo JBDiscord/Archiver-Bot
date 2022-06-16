@@ -49,4 +49,6 @@ This is so we can talk about what the feature is and what it intails before you 
 ## Links
 [Design Doc](https://github.com/tonymoooon543/Archiver-Bot/blob/master/DESIGN.md)
 <br>
+[Trello](https://trello.com/b/zQYvhdVE/archiver-bot)
+<br>
 Discord - *coming sooner or later*
