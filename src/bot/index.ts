@@ -27,7 +27,7 @@ client.on("messageCreate", async (message: Message)=> {
 
     const serverSettings = (await getDoc(doc(serversCol, message.guild.id))).data()
 
-    if (serverSettings.blackList.includes(message.channel.id, 0) == true) { return; }
+    if (serverSettings.blackList.includes(Number(message.channel.id), 0) == true) { return; }
     
     if (message.channel.isThread() && serverSettings.archiveThreads === false) { return; }
 
@@ -46,6 +46,7 @@ client.on("messageCreate", async (message: Message)=> {
     await setDoc(doc(messagesCol, message.guild.id, "archive", message.id), {
         content: message.content,
         user: message.member.id,
+        channel: message.channel.id,
         attachments: attachments,
         inThread: isthread
     })    

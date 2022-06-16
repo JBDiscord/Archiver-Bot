@@ -4,7 +4,7 @@ import { Client, Interaction, PermissionResolvable } from "discord.js"
 export interface IServer {
     loggingEnabled: boolean
     archiveThreads: boolean,
-    blackList: String[],
+    blackList: Number[],
     botModerators: String[],
     country: String,
     loggingChannel: String,
@@ -14,6 +14,7 @@ export interface IMessage {
     attachments: String[],
     content: String,
     user: String,
+    channel: String,
     inThread: boolean
 }
 
