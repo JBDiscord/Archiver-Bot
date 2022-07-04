@@ -1,0 +1,9 @@
+import { TypedEvent } from "../types";
+
+export const event = TypedEvent({
+    eventName: "eventName",
+    once: false,
+    run:async (eventPerams: Type) => {
+        
+    }
+})

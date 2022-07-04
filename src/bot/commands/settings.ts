@@ -16,6 +16,13 @@ export const command: ICommand = {
             .addBooleanOption(option =>
                 option.setName("toggle")
                 .setDescription("TODO")
+                .setRequired(true)))
+        .addSubcommand(command => 
+            command.setName("archivebots")
+            .setDescription("Weather or not you bot messages to be archived")
+            .addBooleanOption(option => 
+                option.setName("toggle")
+                .setDescription("TODO")
                 .setRequired(true))),
 
     run: async function (interaction: Interaction, client: Client) {
@@ -28,6 +35,15 @@ export const command: ICommand = {
                 })
 
                 interaction.reply(`Changed archive threads to: ${String(option)}`)
+            }
+            if (interaction.options.getSubcommand() === "archivebots") {
+                const option = interaction.options.getBoolean("toggle")
+
+                updateDoc(doc(serversCol, interaction.guild.id), {
+                    archiveBots: option
+                })
+
+                interaction.reply(`Changed archive bots to: ${String(option)}`)
             }
         }
     }

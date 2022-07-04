@@ -47,10 +47,11 @@ export const command: ICommand = {
                 await setDoc(doc(serversCol, interaction.guild.id), {
                     blackList: [],
                     botModerators: [],
-                    archiveThreads: null,
+                    archiveThreads: true,
                     country: interaction.options.getString("country"),
                     loggingEnabled: interaction.options.getBoolean("enable_logging"),
-                    loggingChannel: loggingchannel
+                    loggingChannel: loggingchannel,
+                    archiveBots: true
                 })
 
                 await setDoc(doc(collection(firestore, "messages"), interaction.guild.id), {

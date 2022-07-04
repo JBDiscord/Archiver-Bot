@@ -5,15 +5,40 @@ import { Routes } from "discord-api-types/v9"
 
 import getfiles from './getfiles'
 import config from "../../config.json"
-import { ICommand } from "./types"
+import { IBotEvent, ICommand } from "./types"
 import { noPermsEmbed, commandErrorEmbed } from "./utils/embeds"
 
-export default (client: Client) => {
-    const rest = new REST({ version: '9' }).setToken(config.token);
+export const commands = {} as {
+    [key: string]: any
+}
 
-    const commands = {} as {
-        [key: string]: any
+export default (client: Client) => {
+    // Events
+
+    const eventFiles = getfiles(config.events_dir)
+
+    for (const file of eventFiles) {
+        const event = require(`${file}`).event as IBotEvent<any>
+
+        if(!event) {
+            console.error(`File at path ${file} seems to incorrectly be exporting an event.`)
+        }
+        else {
+            if(event.once) {
+                client.once(event.eventName, event.run.bind(null, this))
+            } else {
+                client.on(event.eventName, event.run.bind(null, this))
+            }
+        }
+
+        console.log(`Registered event ${event.eventName}`)
     }
+
+    console.log("Events registered ")
+
+
+    // Commands
+    const rest = new REST({ version: '9' }).setToken(config.token);
 
     const commandsBody = []
     const commandFiles = getfiles(config.command_dir)
@@ -58,38 +83,4 @@ export default (client: Client) => {
             }
         })();
     }
-
-    client.on("interactionCreate", async (interaction: Interaction) => {
-        if (interaction.isCommand()) {
-            if (!interaction.inCachedGuild()) return;
-
-            const { commandName } = interaction
-            const command = commands[commandName.toLowerCase()] as ICommand
-            if (!command) return;
-
-            //Permissions Checker
-            if (command.perms && !interaction.member.permissions.has(command.perms)) {
-                interaction.reply({ embeds: [noPermsEmbed], ephemeral: true })
-            }
-
-            try {
-                await command.run(interaction, client)
-            } catch (err) {
-                if (interaction.deferred || interaction.replied) {
-                    await interaction.editReply({
-                        content: " ",
-                        embeds: [commandErrorEmbed],
-                    });
-                } else {
-                    await interaction.reply({
-                        content: " ",
-                        embeds: [commandErrorEmbed],
-                        ephemeral: true,
-                    });
-                }
-
-                console.log(err)
-            }
-        }
-    })
 }
