@@ -4,12 +4,14 @@
 
 <br>
 
-[![license](https://img.shields.io/badge/license-JBPL--NO%201.0-brightgreen)](https://github.com/JBStepan/Archiver-Bot/blob/master/LICENSE.txt)
+[![license](https://img.shields.io/badge/License-JBPL--NC%201.0-green)](https://github.com/JBStepan/Archiver-Bot/blob/master/LICENSE.txt)
 
 [![forthebadge](https://forthebadge.com/images/badges/mom-made-pizza-rolls.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/compatibility-betamax.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
-[![forthebadge](https://img.shields.io/github/languages/code-size/JBStepan/Archiver-Bot?style=for-the-badge)](https://forthebadge.com)
+<br>
+![forthebadge](https://img.shields.io/github/languages/code-size/JBStepan/Archiver-Bot?style=for-the-badge)
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/JBStepan/Archiver-Bot?color=green&style=for-the-badge)
 
 
 # Discord Archiver Bot
