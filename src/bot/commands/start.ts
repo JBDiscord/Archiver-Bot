@@ -3,6 +3,7 @@ import { Client, GuildMember, Interaction, Permissions } from "discord.js"
 import { firestore, serversCol } from "../firebase"
 import { doc, setDoc, collection } from 'firebase/firestore'
 import { ICommand } from "../types"
+import { settingsCache } from "../utils/cache";
 
 
 export const command: ICommand = {
@@ -57,6 +58,19 @@ export const command: ICommand = {
                 await setDoc(doc(collection(firestore, "messages"), interaction.guild.id), {
                    "archiveVersion": 1
                 })
+
+                settingsCache[interaction.guild.id] = {
+                    lastCached: Date.now().toString(),
+                    settings:{
+                        blackList: [],
+                        botModerators: [],
+                        archiveThreads: true,
+                        country: interaction.options.getString("country"),
+                        loggingEnabled: interaction.options.getBoolean("enable_logging"),
+                        loggingChannel: loggingchannel,
+                        archiveBots: true
+                    }
+                }
 
                 setTimeout(() => {
                     interaction.editReply(`${userMention(interaction.user.id)}, the bot has been initialized! Use /help to see commands!`)

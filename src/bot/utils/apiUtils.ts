@@ -65,15 +65,3 @@ export const getGuildInfo =async (guildid: string) => {
         "icon": guild.iconURL()
     }
 }
-
-export const getUserInfo = async (userid: string) => {
-    const guild = client.users.cache.get(userid)
-
-    if (guild == undefined) {
-        return "NOUSER"
-    }
-
-    return {
-        "name": guild.username
-    }
-}

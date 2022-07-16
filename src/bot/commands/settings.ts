@@ -1,9 +1,9 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
-import { Client, Interaction } from "discord.js"
+import { Client, Interaction, MessageEmbed } from "discord.js"
 import { firestore, serversCol } from "../firebase"
 import { doc, updateDoc, arrayUnion, getDoc, setDoc } from 'firebase/firestore'
-import { ICommand } from "../types"
-
+import { ICommand, IServer } from "../types"
+import { settingsCache } from "../utils/cache";
 
 export const command: ICommand = {
     name: "Settings",
@@ -23,16 +23,21 @@ export const command: ICommand = {
             .addBooleanOption(option => 
                 option.setName("toggle")
                 .setDescription("TODO")
-                .setRequired(true))),
+                .setRequired(true)))
+        .addSubcommand(command => 
+            command.setName('view')
+            .setDescription("TODO")),
 
     run: async function (interaction: Interaction, client: Client) {
         if (interaction.isCommand()) {
             if (interaction.options.getSubcommand() === "archivethreads") {
-                const option = interaction.options.getBoolean("toggle")
+                const option: boolean = interaction.options.getBoolean("toggle")
 
                 updateDoc(doc(serversCol, interaction.guild.id), {
                     archiveThreads: option
                 })
+
+                settingsCache[interaction.guild.id].settings.archiveThreads = option
 
                 interaction.reply(`Changed archive threads to: ${String(option)}`)
             }
@@ -43,7 +48,36 @@ export const command: ICommand = {
                     archiveBots: option
                 })
 
+                settingsCache[interaction.guild.id].settings.archiveBots = option
+
                 interaction.reply(`Changed archive bots to: ${String(option)}`)
+            }
+            if(interaction.options.getSubcommand() === "view") {
+
+                var serverSettings: IServer
+
+                if (!settingsCache[interaction.guild.id]) {
+                    serverSettings = (await getDoc(doc(serversCol, interaction.guild.id))).data()
+                    settingsCache[interaction.guild.id] = {
+                        lastCached: Date.now().toString(),
+                        settings: serverSettings
+                    }
+                    console.log("Grabbing from DB")
+                } else {
+                    serverSettings = settingsCache[interaction.guild.id].settings
+                    console.log("Grabbing from cache")
+                }
+
+                const embed = new MessageEmbed()
+                    .setDescription(`
+                    Archive Bot: ${serverSettings.archiveBots}
+                    Archive Thread: ${serverSettings.archiveThreads}
+                    Logging Enabled: ${serverSettings.loggingEnabled}
+                    `)
+
+                interaction.reply({
+                    embeds: [embed]
+                })
             }
         }
     }
