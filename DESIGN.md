@@ -24,7 +24,7 @@ I think its pretty clear that a problem I will come across is, storing things th
 The website is basically the heart of Archiver Bot, this is where people can see 
 the servers archive, if they are a bot moderator, and change the servers settings. 
 Most of the time people will access the archive by doing, /archive, that will send a 
-link in chat to that server's archive, for example, https://www.domainnamehere.xyz/serverid. 
+link in chat to that server's archive, for example, https://www.archiverbot.xyz/archive/[serverid]. 
 The page will have in a list the messages sent with a table arrangement, each message’s table 
 id corresponds to the Discord message id. This page will also have a button for seeing the server’s 
 Archiver Bot audit log, to see if any message has been deleted. The audit log can not be deleted. For the website
@@ -32,6 +32,9 @@ im going to use [NuxtJS](https://v3.nuxtjs.org). It allows for serverless deploy
 it uses VueJS, and I like Vue.
 
 ## Monetization
+I have recentlly been rethinkng monetization for Archiver, think I have come up with a structure that is both nice to people who dont or cant pay and people who can. Free Tier, instead of archiving all messages sent in the server there will be a message context menu command that archives the particular message. Another thing is pinned messaged archiving and starboards. Tier 1 ***$2.50 per month*** **$15 lifetime**, everything in free along with archiving all messages sent in specific channels up to 5, or 2 entire categories. Tier 2 ***$7.50 per month*** **$30 lifetime**, everything in tier 2 along with, archiving all messages in non-blacklisted channels and/or categories, private and multiple starboards.
+
+#### vv Old vv
 The way I'm thinking about monetizing Archiver Bot is some basic things. Vanity URL for the servers Archive, archiving Attachments?. This will be around
 $0.99 per month or $12 per year, the pricing is subject to change, if the bot takes off huge I might have to increase rewards and the price.
 
