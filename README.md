@@ -1,3 +1,10 @@
+<h1>
+ This is Archived. I read through the Discord ToS and found out this is most likely against it
+</h1>
+<h2>
+  I AM NOT RESPONSEABLE IF YOU GET BANNED FROM DISCORD BY USING THIS BOT. USE AT YOUR OWN RISK
+</h2>
+
 <div align="center">
   <img align="center" src="https://github.com/tonymoooon543/Archiver-Bot/blob/master/images/archiver-logo.png">
 </div>
